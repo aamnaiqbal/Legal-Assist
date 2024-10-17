@@ -37,7 +37,7 @@ const adminSchema= new mongoose.Schema({
                 return val===this.password
             },
             message: "Password and confirm password must match."
-        }
+        },
     },
     cnicNo:{
         type: Number,
@@ -72,4 +72,11 @@ const adminSchema= new mongoose.Schema({
     
 });
 
-const Admin= mongoose.Model('Admin', adminSchema)
+adminSchema.pre('save', function(next){
+    this.confirmPassword= undefined;
+    next();
+})
+
+const Admin= mongoose.model('Admin', adminSchema);
+
+module.exports= Admin
