@@ -1,10 +1,10 @@
 const mongoose= require('mongoose');
 const validator = require('validator');
 
-const adminSchema= new mongoose.Schema({
+const lawyerSchema= new mongoose.Schema({
     role: {
         type: String,
-        default: "admin"
+        default: "lawyer"
     },
     name:{
         type: String,
@@ -77,6 +77,6 @@ adminSchema.pre('save', function(next){
     next();
 })
 
-const Admin= mongoose.model('Admin', adminSchema);
+const Lawyer= mongoose.model('Lawyer', lawyerSchema);
 
-module.exports= Admin
+module.exports= Lawyer;

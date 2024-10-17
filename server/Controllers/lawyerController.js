@@ -1,13 +1,13 @@
 const mongoose = require('mongoose')
-const Admin= require('../Models/adminModel')
+const Lawyer= require('../Models/lawyerModel')
 const asyncErrorHandler= require('../utils/asyncErrorHandler')
 
 exports.signup= asyncErrorHandler(async(req,res,next)=>{
-    const admin= await Admin.create(req.body);
+    const lawyer= await Lawyer.create(req.body);
     res.status(201).json({
         status: "success",
         data:{
-            admin
+            lawyer
         }
     })
 })
