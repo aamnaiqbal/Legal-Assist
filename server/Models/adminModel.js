@@ -2,6 +2,10 @@ const mongoose= require('mongoose');
 const validator = require('validator');
 
 const adminSchema= new mongoose.Schema({
+    role: {
+        type: String,
+        default: "admin"
+    },
     name:{
         type: String,
         required: [true, "Please enter your name"],
