@@ -1,2 +1,2 @@
-const Model=require('../Models/userModel');
+const User=require('../Models/userModel');
 

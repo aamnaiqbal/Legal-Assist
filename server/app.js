@@ -1,6 +1,7 @@
 const express= require('express');
 const app= express();
 
+
 const adminRouter= require('./Routes/adminRoute');
 const userRouter= require('./Routes/userRoute');
 
