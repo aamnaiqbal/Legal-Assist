@@ -1,5 +1,6 @@
 const mongoose= require('mongoose');
 const validator = require('validator');
+const bcrypt= require('bcrypt')
 
 const lawyerSchema= new mongoose.Schema({
     role: {
@@ -72,10 +73,16 @@ const lawyerSchema= new mongoose.Schema({
     
 });
 
-adminSchema.pre('save', function(next){
+lawyerSchema.pre('save', async function(next){
+    if(!this.isModified('password')) return next();
+    this.password=await bcrypt.hash(this.password, 12) //12 is the cost factor
     this.confirmPassword= undefined;
     next();
 })
+
+lawyerSchema.methods.comparePasswordInDB= async function(password,passwordDB){
+    return await bcrypt.compare(password, passwordDB)
+}
 
 const Lawyer= mongoose.model('Lawyer', lawyerSchema);
 
